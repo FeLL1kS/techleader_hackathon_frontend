@@ -24,7 +24,7 @@ const App: React.FC<INavbarProps> = ({
         setSearch(e.target.value);
 
         const filteredData = data.filter((d) =>
-          d.firstName.includes(e.target.value)
+          d.username.includes(e.target.value)
         );
 
         setData(filteredData);

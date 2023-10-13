@@ -5,11 +5,14 @@ import { Rate } from "antd";
 const { Column } = Table;
 
 export interface DataType {
-  key: React.Key;
-  firstName: string;
-  date: number;
-  message: string;
-  tags: string[];
+  id: number;
+  username: string;
+  text: string;
+  fileLink: string;
+  rating: number;
+  fileId: string;
+  isApproved: boolean;
+  date: string;
 }
 
 interface ITableProps {
@@ -18,28 +21,18 @@ interface ITableProps {
 
 const App: React.FC<ITableProps> = ({ data }: ITableProps) => (
   <Table dataSource={data}>
-    <Column title="Name" dataIndex="firstName" key="firstName" />
+    <Column title="Name" dataIndex="username" key="username" />
     <Column title="Date" dataIndex="date" key="date" />
-    <Column title="Message" dataIndex="message" key="message" />
-    <Column
-      title="Tags"
-      dataIndex="tags"
-      key="tags"
-      render={(tags: string[]) => (
-        <>
-          {tags.map((tag) => (
-            <Tag color="blue" key={tag}>
-              {tag}
-            </Tag>
-          ))}
-        </>
-      )}
-    />
+    <Column title="Text" dataIndex="text" key="text" />
+    <Column title="Id" dataIndex="fileId" key="id" />
+    <Column title="Boolean" dataIndex="isApproved" key="isApproved" />
+    <Column title="FileLink" dataIndex="fileLink" key="fileLink" />
+
     <Column
       title="Marks"
       dataIndex="marks"
       key="marks"
-      render={() => <Rate />}
+      render={(_: any, record: DataType) => <Rate value={record.rating} />}
     />
     <Column
       title="Action"
